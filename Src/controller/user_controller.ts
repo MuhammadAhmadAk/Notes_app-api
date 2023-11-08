@@ -100,6 +100,7 @@ export class UserController {
     }
 
     static async updateProfile(req: express.Request, res: express.Response) {
+
         let db = getDatabase();
         let userCollection = db.collection("users");
 
@@ -112,7 +113,7 @@ export class UserController {
 
         res.status(200).json({
             "status": "Success",
-            "response":userInfo
+            "response": userData
         })
     }
 }
