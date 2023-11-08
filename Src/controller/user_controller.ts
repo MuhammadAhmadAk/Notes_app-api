@@ -3,6 +3,7 @@ import { getDatabase } from '../config/mongodb_client';
 import { User } from '../models/user_model';
 import bcrypt from 'bcrypt';
 import { ObjectId } from 'mongodb';
+import { userInfo } from 'os';
 export class UserController {
 
     static async register(req: express.Request, res: express.Response) {
@@ -95,6 +96,23 @@ export class UserController {
         res.status(200).json({
             "status": "success",
             "response": userData[0]
+        })
+    }
+
+    static async updateProfile(req: express.Request, res: express.Response) {
+        let db = getDatabase();
+        let userCollection = db.collection("users");
+
+        const user: User = req.body;
+
+        const updateUserObj = {
+            username: user.username
+        }
+        const userData = await userCollection.updateOne({ _id: new ObjectId(user.uid) }, { $set: updateUserObj });
+
+        res.status(200).json({
+            "status": "Success",
+            "response":userInfo
         })
     }
 }

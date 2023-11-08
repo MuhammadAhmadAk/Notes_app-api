@@ -6,5 +6,6 @@ const userRouter: express.Router = express.Router();
 userRouter.post("/register", UserController.register);
 userRouter.post("/login", UserController.login);
 userRouter.get("/myProfile", UserController.myProfile);
+userRouter.put("updateProfile", UserController.updateProfile);
 
 export default userRouter;
