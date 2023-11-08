@@ -26,7 +26,7 @@ export class UserController {
         } else {
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(user.password, salt);
-            
+
             const responseData = await userCollection.insertOne(user);
 
             const objectId = responseData.insertedId;
@@ -83,5 +83,18 @@ export class UserController {
             });
         }
 
+    }
+    static async myProfile(req: express.Request, res: express.Response) {
+        let db = getDatabase();
+        let userCollection = db.collection("users");
+
+        const uid = req.query.uid;
+
+        const userData = await userCollection.find({ _id: new ObjectId(uid?.toString()) }).toArray();
+
+        res.status(200).json({
+            "status": "success",
+            "response": userData[0]
+        })
     }
 }
