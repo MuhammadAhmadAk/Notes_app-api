@@ -14,8 +14,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/v1/user', userRouter);
 app.use('/v1/notes', notesRouter);
 
-const hostName = "192.168.1.14";
-//const hostName = "192.168.100.11";
+//const hostName = "192.168.1.14"; //apna office
+const hostName ="192.168.100.52" //ecomkey
+//const hostName = "192.168.100.11"; ///ghar
 const port = 5001;
 
 app.listen(port, hostName, async () => {

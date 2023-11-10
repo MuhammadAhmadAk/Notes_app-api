@@ -11,5 +11,7 @@ let appLogger = (req: express.Request, res: express.Response, next: express.Next
 
     next();
 
+
 }
+
 export default appLogger;
