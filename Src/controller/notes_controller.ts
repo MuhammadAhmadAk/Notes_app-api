@@ -60,8 +60,11 @@ export class NotesController {
         res.status(200).json(
             {
                 "status": "success",
-                "response": noteData
+                "noteid": note,
+                "response": noteData,
+
             }
+
 
         )
 
